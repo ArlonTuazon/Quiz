@@ -1,21 +1,21 @@
-const timerElement = document.getElementById("time-remaining");
-const timerView = document.getElementById("timer");
-const highScoreView = document.querySelector("#highscores");
-const startButton = document.getElementById("start-quiz");
+var timerElement = document.getElementById("time-remaining");
+var timerView = document.getElementById("timer");
+var highScoreView = document.querySelector("#highscores");
+var startButton = document.getElementById("start-quiz");
 
-const mainElement = document.querySelector("#main-content");
-const messageElement = document.querySelector("h1");
-const textElement = document.querySelector("p");
+var mainElement = document.querySelector("#main-content");
+var messageElement = document.querySelector("h1");
+var textElement = document.querySelector("p");
 
-const choicesListElement = document.getElementById("choices-list");
-const indicatorElement = document.getElementById("indicator");
+var choicesListElement = document.getElementById("choices-list");
+var indicatorElement = document.getElementById("indicator");
 
-const formElement = document.createElement("div");
-const highscoresElement = document.createElement("div");
-const textInputElement = document.createElement("input");
-const formButton = document.createElement("button");
-const backButton = document.createElement("button");
-const clearButton = document.createElement("button");
+var formElement = document.createElement("div");
+var highscoresElement = document.createElement("div");
+var textInputElement = document.createElement("input");
+var formButton = document.createElement("button");
+var backButton = document.createElement("button");
+var clearButton = document.createElement("button");
 
 
 var highscore = {
@@ -44,8 +44,7 @@ var questions = [
     },
 
     {
-        question:
-            "How do you create a function in JavaScript?",
+        question: "How do you create a function in JavaScript?",
         choices: [
             "A. function = myFunction()",
             "B. function myFunction()",
@@ -73,10 +72,10 @@ var questions = [
     },
 ];
 
-// FUNCTIONS
-init();
+// Start of Functions
+initialize();
 
-function init() {
+function initialize() {
     score = 0;
     secondsLeft = 60;
 }
@@ -150,7 +149,7 @@ function renderQuiz(questionNumber) {
 
 function renderForm() {
     formElement.textContent = "ENTER NAME: ";
-    formElement.setAttribute("style", "color: white");
+    formElement.setAttribute("style", "color: blue");
     formButton.textContent = "SUBMIT";
     mainElement.appendChild(formElement);
     formElement.appendChild(textInputElement);
@@ -172,12 +171,9 @@ function submitHighscore() {
 
 function renderHighscores() {
     var storedHighscore = JSON.parse(localStorage.getItem("highscore"));
-    console.log(storedHighscore);
     messageElement.innerHTML = "Highscores";
     messageElement.setAttribute("style", "color: white");
     mainElement.appendChild(messageElement);
-    console.log(storedHighscore.initials);
-    console.log(storedHighscore.score);
     highscoresElement.setAttribute("class", "highscore-element");
     highscoresElement.textContent = `${storedHighscore.initials} - ${storedHighscore.score}`;
     messageElement.appendChild(highscoresElement);

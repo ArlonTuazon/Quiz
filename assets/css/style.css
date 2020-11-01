@@ -9,24 +9,20 @@
       color: royalblue;
       padding: 0px;
   }
-  
+  #timer{
+    text-align: right;
+    color: darkblue;
+    margin-right: 80px;
+  }
+
   body {
     margin: 0 auto;
     text-align: center;
     background-color: rgb(228, 170, 189);
     
   }
-  p.timer{
-      text-align: right;
-      color: darkblue;
-    }
-  
-  .btn-hiscore{
-   justify-content: left;
-   color: royalblue;
-
-  }
-  
+ 
+    
     
   div.card {
     padding: 70px;
@@ -42,10 +38,10 @@
     padding: 5px;
     border-radius: 10px;
     font-size: 20px;
-    color: white;
+    
     background-color: lightsteelblue;
   }
-  .btn-hiscore:hover{
+  .vScore:hover{
       background-color: pink; 
   }
   .btn-lg:hover{
@@ -70,18 +66,19 @@
   }
   
   #indicator {
-    font-style: italic;
-    font-size: 60px;
+    font-style: bold;
+    font-size: 50px;
   }
   
   .highscore-element {
     font-size: 18px;
-    text-align: left;
-    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    color: rgb(43, 126, 221);
     padding: 10px;
     margin: 10px;
     padding-left: 30px;
-    background-color: rebeccapurple;
+    background-color: lightpink;
   }
   /* MEDIA QUERIES FOR SMALL SCREENS */
 @media screen and (max-width: 980px) {
