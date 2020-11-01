@@ -14,5 +14,11 @@
 <img src ="./assets/images/Quiz.png" alt="Coding Quiz Screenshot" width="300"/>
 
 ### Live URL
+ * https://arlontuazon.github.io/Quiz/
+
+### Github URL
+ *  https://github.com/ArlonTuazon/Quiz
+
+
 
 
