@@ -92,4 +92,36 @@ function startQuiz() {
             clearInterval(timerInterval);
         }
     }, 1000);
+    giveQuiz();
+}
+
+function giveQuiz(questionNumber) {
+    questionNumber = questionNumber || 0;
+    var questionItem = questions[questionNumber];
+    messageElement.textContent = questionItem.question;
+
+    var newChoices = document.createElement("div");
+    choicesListElement.appendChild(newChoices);
+
+    for (var i = 0; i < questionItem.choices.length; i++) {
+        var choice = questionItem.choices[i];
+
+        var li = document.createElement("li");
+        li.setAttribute("data-index", i);
+        li.textContent = choice;
+        newChoices.appendChild(li);
+
+        li.addEventListener("click", function (event) {
+            if (
+                questionItem.answer ===
+                parseInt(event.target.getAttribute("data-index"))
+            ) {
+                score += 10;
+                indicatorElement.innerHTML = "<hr> CORRECT!";
+                indicatorElement.setAttribute("style", "color: lightgreen");
+            } else {
+                secondsLeft -= 10;
+                indicatorElement.innerHTML = "<hr> WRONG!";
+                indicatorElement.setAttribute("style", "color: red");
+            }
 
