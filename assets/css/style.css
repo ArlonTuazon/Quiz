@@ -83,4 +83,17 @@
     padding-left: 30px;
     background-color: rebeccapurple;
   }
-  
+  /* MEDIA QUERIES FOR SMALL SCREENS */
+@media screen and (max-width: 980px) {
+
+}
+
+/* MEDIA QUERIES FOR TABLET */
+@media screen and (max-width: 768px) {
+
+}
+
+/* MEDIA QUERY FOR PHONE */
+@media screen and (max-width: 575px) {
+
+}
