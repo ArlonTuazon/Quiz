@@ -81,7 +81,7 @@ function init() {
     secondsLeft = 60;
 }
 
-function startQuiz() {
+function startGame() {
     startButton.remove();
     textElement.remove();
     timerInterval = setInterval(function () {
@@ -92,10 +92,11 @@ function startQuiz() {
             clearInterval(timerInterval);
         }
     }, 1000);
-    giveQuiz();
+
+    renderQuiz();
 }
 
-function giveQuiz(questionNumber) {
+function renderQuiz(questionNumber) {
     questionNumber = questionNumber || 0;
     var questionItem = questions[questionNumber];
     messageElement.textContent = questionItem.question;
@@ -118,12 +119,13 @@ function giveQuiz(questionNumber) {
             ) {
                 score += 10;
                 indicatorElement.innerHTML = "<hr> CORRECT!";
-                indicatorElement.setAttribute("style", "color: lightgreen");
+                indicatorElement.setAttribute("style", "color: purple");
             } else {
                 secondsLeft -= 10;
                 indicatorElement.innerHTML = "<hr> WRONG!";
                 indicatorElement.setAttribute("style", "color: red");
             }
+
             questionNumber++;
 
             if (questionNumber === questions.length) {
@@ -145,7 +147,6 @@ function giveQuiz(questionNumber) {
         });
     }
 }
-//Enter Score
 
 function renderForm() {
     formElement.textContent = "ENTER NAME: ";
@@ -155,3 +156,53 @@ function renderForm() {
     formElement.appendChild(textInputElement);
     formElement.appendChild(formButton);
 }
+
+function submitHighscore() {
+    var initialInput = document.querySelector("input").value;
+    highscore.initials = initialInput;
+    highscore.score = score;
+    console.log(highscore);
+    localStorage.setItem("highscore", JSON.stringify(highscore));
+    mainElement.innerHTML = "";
+    highScoreView.textContent = "";
+    timerView.textContent = "";
+
+    renderHighscores();
+}
+
+function renderHighscores() {
+    var storedHighscore = JSON.parse(localStorage.getItem("highscore"));
+    console.log(storedHighscore);
+    messageElement.innerHTML = "Highscores";
+    messageElement.setAttribute("style", "color: white");
+    mainElement.appendChild(messageElement);
+    console.log(storedHighscore.initials);
+    console.log(storedHighscore.score);
+    highscoresElement.setAttribute("class", "highscore-element");
+    highscoresElement.textContent = `${storedHighscore.initials} - ${storedHighscore.score}`;
+    messageElement.appendChild(highscoresElement);
+    backButton.textContent = "Home";
+    clearButton.textContent = "Clear";
+    mainElement.appendChild(backButton);
+    mainElement.appendChild(clearButton);
+}
+
+function clear() {
+    highscoresElement.remove();
+}
+
+function home() {
+    location.reload();
+}
+
+highScoreView.addEventListener("click", function () {
+    textElement.remove();
+    startButton.remove();
+    renderHighscores();
+});
+
+startButton.addEventListener("click", startGame);
+formButton.addEventListener("click", submitHighscore);
+backButton.addEventListener("click", home);
+clearButton.addEventListener("click", clear);
+
