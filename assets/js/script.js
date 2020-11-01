@@ -8,7 +8,7 @@ var messageElement = document.querySelector("h1");
 var textElement = document.querySelector("p");
 
 var choicesListElement = document.getElementById("choices-list");
-var indicatorElement = document.getElementById("indicator");
+var responseElement = document.getElementById("response");
 
 var formElement = document.createElement("div");
 var highscoresElement = document.createElement("div");
@@ -80,7 +80,7 @@ function initialize() {
     secondsLeft = 60;
 }
 
-function startGame() {
+function startQuiz() {
     startButton.remove();
     textElement.remove();
     timerInterval = setInterval(function () {
@@ -92,10 +92,11 @@ function startGame() {
         }
     }, 1000);
 
-    renderQuiz();
+    giveQuiz();
 }
 
-function renderQuiz(questionNumber) {
+//Start answering the quiz
+function giveQuiz(questionNumber) {
     questionNumber = questionNumber || 0;
     var questionItem = questions[questionNumber];
     messageElement.textContent = questionItem.question;
@@ -117,37 +118,37 @@ function renderQuiz(questionNumber) {
                 parseInt(event.target.getAttribute("data-index"))
             ) {
                 score += 10;
-                indicatorElement.innerHTML = "<hr> CORRECT!";
-                indicatorElement.setAttribute("style", "color: purple");
+                responseElement.innerHTML = "<hr> CORRECT!";
+                responseElement.setAttribute("style", "color: purple");
             } else {
                 secondsLeft -= 10;
-                indicatorElement.innerHTML = "<hr> WRONG!";
-                indicatorElement.setAttribute("style", "color: red");
+                responseElement.innerHTML = "<hr> WRONG!";
+                responseElement.setAttribute("style", "color: red");
             }
 
             questionNumber++;
 
             if (questionNumber === questions.length) {
                 clearInterval(timerInterval);
-                indicatorElement.textContent = "";
+                responseElement.textContent = "";
                 newChoices.remove();
-                messageElement.textContent = "Game Over!";
                 messageElement.appendChild(textElement);
                 textElement.textContent = "Your final score is: " + score;
 
-                renderForm();
+                formScore();
             } else {
                 setTimeout(function () {
-                    renderQuiz(questionNumber);
+                    giveQuiz(questionNumber);
                     newChoices.remove();
-                    indicatorElement.textContent = "";
+                    responseElement.textContent = "";
                 }, 1000);
             }
         });
     }
 }
 
-function renderForm() {
+//Submit name for score
+function formScore() {
     formElement.textContent = "ENTER NAME: ";
     formElement.setAttribute("style", "color: blue");
     formButton.textContent = "SUBMIT";
@@ -166,18 +167,18 @@ function submitHighscore() {
     highScoreView.textContent = "";
     timerView.textContent = "";
 
-    renderHighscores();
+    giveHighscores();
 }
 
-function renderHighscores() {
+function giveHighscores() {
     var storedHighscore = JSON.parse(localStorage.getItem("highscore"));
     messageElement.innerHTML = "Highscores";
-    messageElement.setAttribute("style", "color: white");
+    messageElement.setAttribute("style", "color: blue");
     mainElement.appendChild(messageElement);
     highscoresElement.setAttribute("class", "highscore-element");
     highscoresElement.textContent = `${storedHighscore.initials} - ${storedHighscore.score}`;
     messageElement.appendChild(highscoresElement);
-    backButton.textContent = "Home";
+    backButton.textContent = "Start Again";
     clearButton.textContent = "Clear";
     mainElement.appendChild(backButton);
     mainElement.appendChild(clearButton);
@@ -187,18 +188,18 @@ function clear() {
     highscoresElement.remove();
 }
 
-function home() {
+function startAgain() {
     location.reload();
 }
 
 highScoreView.addEventListener("click", function () {
     textElement.remove();
     startButton.remove();
-    renderHighscores();
+    giveHighscores();
 });
 
-startButton.addEventListener("click", startGame);
+startButton.addEventListener("click", startQuiz);
 formButton.addEventListener("click", submitHighscore);
-backButton.addEventListener("click", home);
+backButton.addEventListener("click", startAgain);
 clearButton.addEventListener("click", clear);
 
