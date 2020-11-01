@@ -11,7 +11,7 @@
   * Javascript
 
 ### Screenshot
-<img src = "./assets/images/Quiz.png" alt="Coding Quiz Screenshot>
+<img src ="./assets/images/Quiz.png" alt="Coding Quiz Screenshot" width="300"/>
 
 ### Live URL
 
