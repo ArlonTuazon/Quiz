@@ -1,65 +1,80 @@
-body {
-    background-color: lightpink;
-}
-
-header{
-display: inline;
-}
-
-.sTimer {
-    text-align: right;
-    font-size: 30px;
-    color: royalblue;
-    margin-right: 80px;
-    margin-top: 10px;
-}
-
-    
-h1 {
-    font-size: 50px;
-    color: royalblue;
-    size: 15px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    text-align: center;
-    margin-top: 5px;
-}
-p{
-    text-align: center;
-    font-size: 20px;
-    color: royalblue;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-
-.btn-hiscore {
-    padding-top: 10px;
-    display: inline-block;
-}
-.container {  
-   
-    display: flex;  
-    justify-content: center;  
-    align-items: center;  
-    }  
-.button {
-    border: none;
-    color: white;
-    padding: 20px 50px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 10px 10px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-
-} 
-.btn-start {
-    background-color: white; 
-    color: blue; 
-    border: 5px solid red;
-}
-
-.btn-start:hover {
-    background-color: rgb(206, 94, 112);
-    color: white;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
+  header {
+      display: flex;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      color: royalblue;
+      padding: 0px;
+  }
+  
+  body {
+    margin: 0 auto;
+    text-align: center;
+    background-color: rgb(228, 170, 189);
+    
+  }
+  p.timer{
+      text-align: right;
+      color: darkblue;
+    }
+  
+  .btn-hiscore{
+   justify-content: left;
+   color: royalblue;
+
+  }
+  
+    
+  div.card {
+    padding: 70px;
+    position: relative;
+    color: royalblue;
+  }
+  
+  ul {
+    margin: 100px;
+  }
+  
+  button {
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 20px;
+    color: white;
+    background-color: lightsteelblue;
+  }
+  .btn-hiscore:hover{
+      background-color: pink; 
+  }
+  .btn-lg:hover{
+    background-color: pink;
+
+  }
+  ul {
+    list-style: none;
+  }
+  
+  li {
+    padding: 10px;
+    margin: 10px;
+    font-size: 23px;
+    background-color: rebeccapurple;
+  }
+  
+  #indicator {
+    font-style: italic;
+    font-size: 60px;
+  }
+  
+  .highscore-element {
+    font-size: 18px;
+    text-align: left;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    padding-left: 30px;
+    background-color: rebeccapurple;
+  }
+  

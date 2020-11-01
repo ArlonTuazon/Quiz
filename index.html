@@ -5,21 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Quiz</title>
+    <title>Coding Quiz</title>
 </head>
 <body>
     <header>
-        <button class = "btn-hiscore">View High Score</button> 
-        <p id ="timer" class="sTimer">Timer</p>        
-    </header>
+        <div>
+        <button type="button" id="highscores" class="btn btn-lg btn-outline-primary">View Scores</button></header></div>
+        <div id="timer">Time Remaining: <span id="time-remaining">60</span></div>
    
-    <main id ="main-content" class="content">
-        <h1>Coding Quiz Challenge</h1>
-        <p>Try to answer the question within the time frame. <br> Time will be subtrcted from the clock for every wrong answer</p>
-        <div class="container">
-        
-      <button class ="button btn-start">Start</button>
-      </div>
+    <main id="main-content" class="container">
+        <div class="row mb-3">
+            <div class="card col-lg-12 text-center bg-transparent">
+                <div class="card-header">
+                    <h1>Code Quiz Challenge</h1>
+                    <p id="card-text">You must answer the questions within the time frame.</p>
+                    <br></br>
+                    <button id="start-quiz" class="btn-lg">Start Quiz</button>
+                    <ul id="choices-list"></ul>
+                    <div id="indicator"></div>
+                </div>
+
+            </div>
+        </div>
     </main>
     <script src ="./assets/js/script.js"></script>
 </body>
