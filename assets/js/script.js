@@ -124,4 +124,34 @@ function giveQuiz(questionNumber) {
                 indicatorElement.innerHTML = "<hr> WRONG!";
                 indicatorElement.setAttribute("style", "color: red");
             }
+            questionNumber++;
 
+            if (questionNumber === questions.length) {
+                clearInterval(timerInterval);
+                indicatorElement.textContent = "";
+                newChoices.remove();
+                messageElement.textContent = "Game Over!";
+                messageElement.appendChild(textElement);
+                textElement.textContent = "Your final score is: " + score;
+
+                renderForm();
+            } else {
+                setTimeout(function () {
+                    renderQuiz(questionNumber);
+                    newChoices.remove();
+                    indicatorElement.textContent = "";
+                }, 1000);
+            }
+        });
+    }
+}
+//Enter Score
+
+function renderForm() {
+    formElement.textContent = "ENTER NAME: ";
+    formElement.setAttribute("style", "color: white");
+    formButton.textContent = "SUBMIT";
+    mainElement.appendChild(formElement);
+    formElement.appendChild(textInputElement);
+    formElement.appendChild(formButton);
+}
