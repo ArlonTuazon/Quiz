@@ -4,6 +4,7 @@ var highScoreView = document.querySelector("#highscores");
 var startButton = document.getElementById("start-quiz");
 
 var mainElement = document.querySelector("#main-content");
+
 var messageElement = document.querySelector("h1");
 var textElement = document.querySelector("p");
 
@@ -11,6 +12,7 @@ var choicesListElement = document.getElementById("choices-list");
 var responseElement = document.getElementById("response");
 
 var formElement = document.createElement("div");
+console.log(formElement);
 var highscoresElement = document.createElement("div");
 var textInputElement = document.createElement("input");
 var formButton = document.createElement("button");
@@ -94,14 +96,14 @@ function startQuiz() {
 
     giveQuiz();
 }
-
+console.log(questions);
 //Start answering the quiz
 function giveQuiz(questionNumber) {
     questionNumber = questionNumber || 0;
     var questionItem = questions[questionNumber];
     messageElement.textContent = questionItem.question;
-
     var newChoices = document.createElement("div");
+    
     choicesListElement.appendChild(newChoices);
 
     for (var i = 0; i < questionItem.choices.length; i++) {
@@ -130,15 +132,20 @@ function giveQuiz(questionNumber) {
 
             if (questionNumber === questions.length) {
                 clearInterval(timerInterval);
+                
                 responseElement.textContent = "";
+               
                 newChoices.remove();
+                messageElement.textContent="";
                 messageElement.appendChild(textElement);
+                
                 textElement.textContent = "Your final score is: " + score;
-
+                
                 formScore();
             } else {
                 setTimeout(function () {
                     giveQuiz(questionNumber);
+                    
                     newChoices.remove();
                     responseElement.textContent = "";
                 }, 1000);
@@ -149,12 +156,16 @@ function giveQuiz(questionNumber) {
 
 //Submit name for score
 function formScore() {
-    formElement.textContent = "ENTER NAME: ";
+    
+    formElement.textContent = "ENTER YOUR NAME: ";
     formElement.setAttribute("style", "color: blue");
     formButton.textContent = "SUBMIT";
+    
     mainElement.appendChild(formElement);
     formElement.appendChild(textInputElement);
     formElement.appendChild(formButton);
+    
+    
 }
 
 function submitHighscore() {
@@ -164,6 +175,7 @@ function submitHighscore() {
     console.log(highscore);
     localStorage.setItem("highscore", JSON.stringify(highscore));
     mainElement.innerHTML = "";
+    
     highScoreView.textContent = "";
     timerView.textContent = "";
 
